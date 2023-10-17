@@ -106,5 +106,18 @@ namespace TP3.Controllers
                 return View();
             }
         }
+
+        public ActionResult Search(string name, int? schoolid)
+
+        {
+            var result = studentRepository.GetAll();
+            if (!string.IsNullOrEmpty(name))
+                result = studentRepository.FindByName(name);
+            else
+            if (schoolid != null)
+                result = studentRepository.GetStudentsBySchoolID(schoolid);
+            ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
+            return View("Index", result);
+        }
     }
 }
