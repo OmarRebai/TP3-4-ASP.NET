@@ -84,7 +84,7 @@ namespace TP3.Controllers
             return View(school);
         }
 
-        // POST: SchoolController/Delete/5
+        // POST: SchoolController/Delete/
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(School school)
