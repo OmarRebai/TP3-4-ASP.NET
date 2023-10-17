@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using TP3.Models;
 using TP3.Models.Repositories;
 
 namespace TP3.Controllers
@@ -19,15 +20,16 @@ namespace TP3.Controllers
         // GET: StudentController
         public ActionResult Index()
         {
-            var students = .GetAll();
+            var students = studentRepository.GetAll();
 
-            return View();
+            return View(students);
         }
 
         // GET: StudentController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var student = studentRepository.GetById(id);
+            return View(student);
         }
 
         // GET: StudentController/Create
@@ -39,10 +41,11 @@ namespace TP3.Controllers
         // POST: StudentController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Student student)
         {
             try
             {
+                studentRepository.Add(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -54,16 +57,18 @@ namespace TP3.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var student = studentRepository.GetById(id);
+            return View(student);
         }
 
         // POST: StudentController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(Student student)
         {
             try
             {
+                studentRepository.Edit(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -75,16 +80,18 @@ namespace TP3.Controllers
         // GET: StudentController/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var student = studentRepository.GetById(id);
+            return View(student);
         }
 
         // POST: StudentController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(Student student)
         {
             try
             {
+                studentRepository.Delete(student);
                 return RedirectToAction(nameof(Index));
             }
             catch
