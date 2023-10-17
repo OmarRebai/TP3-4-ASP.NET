@@ -11,6 +11,7 @@ builder.Services.AddDbContextPool<StudentContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("StudentDBConnection")));
 builder.Services.AddScoped<ISchoolRepository, SchoolRepository>();
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<StudentContext>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

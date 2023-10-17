@@ -23,6 +23,7 @@ namespace TP3.Controllers
         // GET: StudentController
         public ActionResult Index()
         {
+            ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
             var students = studentRepository.GetAll();
 
             return View(students);
@@ -116,7 +117,7 @@ namespace TP3.Controllers
             else
             if (schoolid != null)
                 result = studentRepository.GetStudentsBySchoolID(schoolid);
-            ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
+                ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
             return View("Index", result);
         }
     }

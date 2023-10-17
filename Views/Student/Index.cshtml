@@ -47,7 +47,7 @@ height:30px" ></select>
                 @Html.DisplayFor(modelItem => item.BirthDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.School.SchoolID)
+                @Html.DisplayFor(modelItem => item.School.SchoolName)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.StudentId">Edit</a> |
