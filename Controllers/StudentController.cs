@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Mvc.Rendering;
+=======
+>>>>>>> 7b0118da8645182b977e0356aa35b18177f1fb12
 using TP3.Models;
 using TP3.Models.Repositories;
 
@@ -49,7 +52,10 @@ namespace TP3.Controllers
         {
             try
             {
+<<<<<<< HEAD
                 ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
+=======
+>>>>>>> 7b0118da8645182b977e0356aa35b18177f1fb12
                 studentRepository.Add(student);
                 return RedirectToAction(nameof(Index));
             }
@@ -62,7 +68,10 @@ namespace TP3.Controllers
         // GET: StudentController/Edit/5
         public ActionResult Edit(int id)
         {
+<<<<<<< HEAD
             ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
+=======
+>>>>>>> 7b0118da8645182b977e0356aa35b18177f1fb12
             var student = studentRepository.GetById(id);
             return View(student);
         }
@@ -74,7 +83,10 @@ namespace TP3.Controllers
         {
             try
             {
+<<<<<<< HEAD
                 ViewBag.SchoolID = new SelectList(schoolRepository.GetAll(), "SchoolID", "SchoolName");
+=======
+>>>>>>> 7b0118da8645182b977e0356aa35b18177f1fb12
                 studentRepository.Edit(student);
                 return RedirectToAction(nameof(Index));
             }
