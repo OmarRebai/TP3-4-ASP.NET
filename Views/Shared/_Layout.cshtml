@@ -34,36 +34,60 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
-                        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-                            <ul class="navbar-nav ml-auto">
-                                @*If the user is signed-in display Logout link*@
-                                @if (SignInManager.IsSignedIn(User))
-                                {
-                                    <li class="nav-item">
-                                        <form method="post" asp-controller="account" asp-action="logout">
-                                            <button type="submit" style="width:auto"
-                                                    class="nav-link btn btn-link py-0">
-                                                Logout @User.Identity.Name
-                                            </button>
-                                        </form>
-                                    </li>
-                                }
-                                else
-                                {
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Account" asp-action="Register">
-                                            Register
-                                        </a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" asp-controller="Account" asp-action="Login">
-                                            Login
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                        </div>
+                       
+                        
                     </ul>
+                    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                        <ul class="navbar-nav ml-auto">
+                            @*If the user is signed-in display Logout link*@
+
+                            @if (SignInManager.IsSignedIn(User) && User.IsInRole("ADMIN"))
+                            {
+                                <li class="nav-item dropdown">
+
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-
+                                       haspopup="true" aria-expanded="false">Administration</a>
+
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="CreateRole">
+                                            Create
+                                            Role
+                                        </a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" asp-area="" asp-controller="Admin" asp-action="ListRoles">
+                                            List
+                                            Roles
+                                        </a>
+                                    </div>
+                                </li>
+                            }
+
+                            @if (SignInManager.IsSignedIn(User))
+                            {
+                                <li class="nav-item">
+                                    <form method="post" asp-controller="account" asp-action="logout">
+                                        <button type="submit" style="width:auto"
+                                                class="nav-link btn btn-link py-0">
+                                            Logout @User.Identity.Name
+                                        </button>
+                                    </form>
+                                </li>
+                            }
+                            else
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Register">
+                                        Register
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" asp-controller="Account" asp-action="Login">
+                                        Login
+                                    </a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -73,7 +97,7 @@
             @RenderBody()
         </main>
     </div>
-
+    
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - TP3 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
@@ -83,5 +107,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+    <script src="~/js/CustomScript.js"></script>
 </body>
 </html>

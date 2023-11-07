@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TP3.Models;
 using TP3.Models.Repositories;
 
 namespace TP3.Controllers
 {
+    [Authorize]
     public class SchoolController : Controller
     {
 
@@ -17,6 +19,7 @@ namespace TP3.Controllers
             this.schoolRepository = schoolRepository;
 
         }
+        [AllowAnonymous]
         // GET: SchoolController
         public ActionResult Index()
         {
